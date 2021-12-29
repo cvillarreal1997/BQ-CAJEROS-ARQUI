@@ -1,0 +1,123 @@
+<p-toast position="top-right"></p-toast>
+<div class="col-12 screen-content">
+  <div class="d-flex justify-content-end" style="text-align: right">
+    <div class="col-4">
+      <div class="form-group row">
+        <label for="cedula" class="col-5 col-form-label">Cédula</label>
+        <div class="col">
+          <input
+            #cedula
+            [(ngModel)]="identification"
+            type="text"
+            name="cedula"
+            (input)="inputNumberValidator($event)" 
+            class="form-control"
+            style="width: 12rem"
+            (keydown.enter)="verificar()"
+            required
+          />
+          <input [(ngModel)]="retiroSave.tipo" hidden name="tipo" />
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="form-group row">
+        <label for="cedula" class="col-5 col-form-label">No. cuenta</label>
+        <div class="col">
+          <input
+            #cuenta
+            type="text"
+            [(ngModel)]="retiroSave.cuentaId"
+            name="cuentaId"
+            (input)="inputNumberValidator($event)" 
+            class="form-control"
+            style="width: 12rem"
+            (keydown.enter)="verificar()"
+          />
+          <input
+            type="hidden"
+            [(ngModel)]="retiroSave.cuentaSalida"
+            name="cuentaSalida"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="col-2">
+      <button (click)="verificar()" tabindex="-1" class="btn btn-primary my-auto">
+        VERIFICAR
+      </button>
+    </div>
+  </div>
+  <br />
+
+  <div class="row my-3" *ngFor="let account of accounts">
+    <h5 style="color: #810000">{{ account.cuentaTipo }}</h5>
+    <div class="col-3">
+      <input
+        type="radio"
+        name="cuentaId"
+        value="{{ account.cuentaId }}"
+        [(ngModel)]="retiroSave.cuentaId"
+      />
+      <label class="custom-control-label p-2" for="defaultUnchecked">{{
+        account.cuentaId
+      }}</label>
+    </div>
+    <div class="col-3">
+      <div class="input-group pago">
+        <div class="input-group-prepend">
+          <span class="input-group-text">$</span>
+        </div>
+        <input
+          #saldo
+          type="text"
+          class="form-control"
+          (input)="inputDecimaValidator($event)" 
+          aria-label="Amount (to the nearest dollar)"
+          value="{{ account.saldo }}"
+          readonly
+        />
+      </div>
+    </div>
+    <br />
+  </div>
+
+  <div class="row my-3">
+    <div><b>Cantidad a retirar</b></div>
+  </div>
+  <div class="input-group pago" style="width: 30%;">
+    <div class="input-group-prepend">
+      <span class="input-group-text">$</span>
+    </div>
+    <input
+      #monto
+      type="text"
+      (input)="inputDecimaValidator($event)" 
+      class="form-control"
+      aria-label="Amount (to the nearest dollar)"
+      [(ngModel)]="retiroSave.monto"
+      name="monto"
+      (keydown.Enter)="enviar()"
+    />
+  </div>
+
+  <br />
+  <div class="row">
+    <div class="row p-3 justify-content-end">
+      <div class="col-3" style="text-align: right">
+        <button
+          (click)="limpiar()"
+          mat-raised-button
+          class="btn btn-outline-danger"
+        >
+          Cancelar
+        </button>
+      </div>
+      <div class="col-3" style="text-align: right">
+        <button (click)="enviar()" mat-raised-button class="btn btn-primary">
+          Aceptar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

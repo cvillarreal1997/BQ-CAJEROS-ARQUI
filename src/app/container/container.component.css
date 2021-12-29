@@ -1,0 +1,30 @@
+.content {
+  background-color: #f8f9fa;
+  padding-top: 4%;
+  padding-bottom: 4%;
+}
+
+.container {
+  border-radius: 10px;
+  border: 1px solid #8c8b8b;
+  padding: 0;
+  background-color: white;
+}
+
+.menu {
+  padding-left: 1%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+.menu .menu-item {
+  text-decoration: none;
+  color: white;
+  border-radius: 5px;
+}
+
+.menu-item {
+  padding: 1% 2%;
+  background-color: black;
+  margin-right: 1%;
+}

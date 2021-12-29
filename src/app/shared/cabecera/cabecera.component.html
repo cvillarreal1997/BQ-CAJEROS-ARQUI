@@ -1,0 +1,32 @@
+<div class="row header">
+  <div class="col-5 navbar-brand">
+    <a routerLink=".">
+      <img
+        src="../../../assets/images/identity/LOGO-BLANCO.png"
+        height="60px"
+        alt="Logo del banco"
+      />
+      Banco BanQuito
+    </a>
+  </div>
+  <div class="col session-navbar">
+    <div class="row h-100" style="margin-top: .5%;">
+      <div class="col-9 my-auto collapsable">
+        <a routerLink=".">
+          <p style="text-transform: uppercase">
+        <i class="pi pi-user"></i>       
+          {{ this.userName }} 
+        </p>
+      </a>
+      </div>
+      <div class="col my-auto mx-4">
+        <a routerLink="" (click)="logout()">
+          <p>
+          <i class="pi pi-sign-out" style="font-size: 1.2rem"></i>
+          salir
+        </p>
+        </a>
+      </div>
+    </div>    
+  </div>
+</div>

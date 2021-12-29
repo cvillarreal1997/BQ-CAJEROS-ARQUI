@@ -1,0 +1,81 @@
+<p-toast position="top-right"></p-toast>
+<div class="row screen-content">
+  <h5 style="color: #810000">Desde</h5>
+  <div class="row py-3">
+    <p class="col-2"><b>Cédula</b></p>
+    <div class="col-4">
+      <input
+        #cedula
+        [(ngModel)]="identification"
+        type="text"
+        name="cedula"
+        (input)="inputValidator($event)" 
+        class="form-control"
+        (keydown.Enter)="getClient()"
+        (keydown.Tab)="getClient()"
+      />
+    </div>
+    <div class="col">
+      <p style="text-transform: uppercase;">{{this.client.nombre1 + " " + this.client.nombre2 + " " + this.client.apellidoPaterno + " " + this.client.apellidoMaterno}}</p>
+    </div>
+  </div>
+  <hr />
+  <h5 style="color: #810000">Para</h5>
+  <div class="row py-3">
+    <div class="col-2">
+      <p for="outterAccount"><b>Cuenta a depositar</b></p>
+    </div>
+    <div class="col-4">
+      <input
+        type="text"
+        (input)="inputValidator($event)" 
+        class="form-control"
+        [(ngModel)]="depositoSave.cuentaId"
+        (change) = "getProduct()"
+        name="cuentaId"
+      />
+      <br />
+      <input
+        value = "{{beneficiaryName}}"
+        type="text"
+        class="form-control"
+        tabindex="-1"
+        id="inlineFormInputGroup"        
+        readonly
+      />
+    </div>
+  </div>
+  <div class="row py-3">
+    <div class="col-2">
+      <p><b>Monto</b></p>
+    </div>
+    <div class="col-4">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text">$</div>
+        </div>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="00.00"
+          (input)="inputDecimaValidator($event)" 
+          [(ngModel)]="depositoSave.monto"
+          name="monto"
+          (keydown.Enter)="enviar()"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="row p-3 justify-content-end">
+    <div class="col-3" style="text-align: right;">
+      <button (click)="limpiar()" mat-raised-button class="btn btn-outline-danger">
+        Cancelar
+      </button>
+    </div>    
+    <div class="col-3" style="text-align: right;">
+      <button (click)="enviar()" mat-raised-button class="btn btn-primary">
+        Aceptar
+      </button>
+    </div>    
+  </div>
+</div>

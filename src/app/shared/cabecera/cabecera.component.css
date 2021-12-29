@@ -1,0 +1,37 @@
+.navbar-brand {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.header {
+  background-color: #810000;
+  color: white;
+  margin: 0;
+}
+
+.session-navbar {
+  align-items: center;
+  text-align: right;
+}
+
+.navbar-nav {
+  flex-direction: row;
+  width: 20%;
+}
+
+@media (max-width: 768px) {
+  .collapsable {
+    display: none;
+  }
+}
+
+@media (min-width: 769px) {  
+  .collapsable {
+    display: block;
+  }
+}

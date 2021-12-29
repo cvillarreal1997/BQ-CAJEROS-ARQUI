@@ -1,0 +1,112 @@
+<p-toast position="top-right"></p-toast>
+<div class="col-12 screen-content">
+  <div class="row">
+    <div class="col">
+      <p style="text-align: right">Número de cedula:</p>
+    </div>
+    <div class="col-4">
+      <input
+        type="text"
+        class="form-control"
+        name="cedula"
+        [(ngModel)]="identification"
+        (input)="inputNumberValidator($event)" 
+        (keydown.Tab)="onIdentification()"
+        (keydown.Enter)="onIdentification()"
+      />
+    </div>
+    <div class="col-2">
+      <button class="btn btn-primary" (click)="onIdentification()">
+        VERIFICAR
+      </button>
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="row" *ngIf="this.debtLoans.length > 0">
+      <p class="col-3 bold">Prestamo:</p>
+      <select
+        class="form-select col"
+        name="producto"
+        [(ngModel)]="clientSelectedLoanIndex"
+        (change)="setLoan()"
+        required
+      >
+        <option
+          *ngFor="let loan of this.debtLoans"
+          value="{{ debtLoans.indexOf(loan) }}"
+          selected
+        >
+          {{ loan.prestamo.nombre + " - " + loan.codigo }}
+        </option>
+      </select>
+    </div>
+    <div class="row" style="color: #810000">
+      <h4>Detalle</h4>
+    </div>
+    <div class="row">
+      <div class="col bold">
+        <p>Nombres</p>
+        <p>Tipo de prestamo</p>
+        <p>Monto inicial</p>
+      </div>
+      <div class="col">
+        <p>{{ this.client.nombre1 + " " + this.client.nombre2 }}</p>
+        <p>{{ this.clientSelectedLoan.prestamo.nombre }}</p>
+        <p>{{ this.clientSelectedLoan.monto }}</p>
+      </div>
+      <div class="col bold">
+        <p>Apellidos</p>
+        <p>Fecha inicio</p>
+        <p>Fecha fin</p>
+      </div>
+      <div class="col">
+        <p>
+          {{ this.client.apellidoPaterno + " " + this.client.apellidoMaterno }}
+        </p>
+        <p>{{ this.clientSelectedLoan.fechaFin | date: 'd MMM y' }}</p>
+        <p>{{ this.clientSelectedLoan.fechaInicio | date: 'd MMM y' }}</p>
+      </div>
+    </div>
+    <div style="color: #810000">
+      <h4>Cuotas</h4>
+    </div>
+    <div class="col">
+      <div class="p-field-checkbox my-2" *ngFor="let cuota of this.quotas">
+        <p-checkbox
+          name="groupname"
+          value="{{ cuota.codigo }}; {{cuota.valorPago}}"
+          [(ngModel)]="this.selectedQuotas"
+          (onChange) = "mountCalc($event)"
+          ></p-checkbox
+        >
+        <label class="mx-2">{{"fecha máxima: " + cuota.fechaMaxPago.toLocaleDateString() + "    valor: " + cuota.valorPago}}</label>
+      </div>
+    </div>
+    <div class="col-4">
+      <p>Monto a pagar</p>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">$</span>
+        </div>
+        <input type="text" class="form-control" [(ngModel)]="monto" readonly/>
+      </div>
+    </div>
+  </div>
+  <div class="row p-3 justify-content-end">
+    <div class="col-3" style="text-align: right">
+      <button
+        (click)="limpiar()"
+        mat-raised-button
+        class="btn btn-outline-danger"
+      >
+        Cancelar
+      </button>
+    </div>
+    <div class="col-3" style="text-align: right">
+      <button (click)="enviar()" mat-raised-button class="btn btn-primary">
+        Aceptar
+      </button>
+    </div>
+  </div>
+</div>

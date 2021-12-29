@@ -1,0 +1,15 @@
+<app-cabecera></app-cabecera>
+<div class="col-12 content">
+  <div class="container">
+    <div class="d-flex flex-row menu">
+        <a class="menu-item" routerLink=".">INFORMACION DEL CLIENTE</a>
+        <a class="menu-item" routerLink="/system/cuote-payment">PAGO CUOTAS PRESTAMO</a>
+        <a class="menu-item" routerLink="/system/credit-payment">PAGO TARJETA DE CRÉDITO </a>
+        <a class="menu-item" routerLink="/system/withdrawal">RETIRO</a>
+        <a class="menu-item" routerLink="/system/deposit">DEPOSITO</a>                
+      </div>      
+      <hr> 
+    <router-outlet></router-outlet>
+  </div>
+</div>
+<app-footer></app-footer>

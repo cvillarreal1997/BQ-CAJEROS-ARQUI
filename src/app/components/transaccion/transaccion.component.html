@@ -1,0 +1,96 @@
+<p-toast position="top-right"></p-toast>
+<div class="col-12 screen-content">
+  <div class="row">
+    <div class="col">
+      <p>Número de cedula:</p>
+      <br />
+      <p>Número de tarjeta:</p>
+    </div>
+    <div class="col">
+      <input
+        type="text"
+        name="identification "
+        [(ngModel)]="identification"
+        class="form-control"
+        (input)="inputNumberValidator($event)" 
+        (keydown.Enter)="onIdentification()"        
+      />
+      <br />
+      <input
+        type="text"
+        name="card"
+        [(ngModel)]="tarjeta"
+        class="form-control"
+        (input)="inputNumberValidator($event)" 
+        (keydown.Enter)="onCarNumber()"
+      />
+    </div>
+    <div class="col">
+      <button class="btn btn-primary" (click)="verificar()">VERIFICAR</button>
+    </div>
+    <div class="col" style="text-align: right">
+      <p>Deuda:</p>
+      <br>
+      <p>Valor mínimo:</p>
+    </div>
+    <div class="col">
+      <input
+        type="text"
+        name="deuda"
+        [(ngModel)]="deuda"
+        class="form-control"
+        readonly
+      />
+      <br>
+      <input
+        type="text"
+        name="minimo"
+        [(ngModel)]="minimo"
+        class="form-control"
+        readonly
+      />
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col">
+      <p>Pago realizado</p>
+    </div>
+    <div class="col">
+      <div class="input-group pago">
+        <div class="input-group-prepend">
+          <span class="input-group-text">$</span>
+        </div>
+        <input
+          type="text"
+          [(ngModel)] = "monto"
+          class="form-control"
+          aria-label="Amount (to the nearest dollar)"
+          (input)="inputDecimaValidator($event)" 
+          (keydown.Enter) = "enviar()"
+        />
+      </div>
+    </div>
+    <div class="col"></div>
+    <div class="col"></div>
+    <div class="col"></div>
+  </div>
+  <br />
+  <br />
+  <div class="row p-3 justify-content-end">
+    <div class="col-3" style="text-align: right">
+      <button
+        (click)="limpiar()"
+        mat-raised-button
+        class="btn btn-outline-danger"
+      >
+        Cancelar
+      </button>
+    </div>
+    <div class="col-3" style="text-align: right">
+      <button (click)="enviar()" mat-raised-button class="btn btn-primary">
+        Aceptar
+      </button>
+    </div>
+  </div>
+</div>

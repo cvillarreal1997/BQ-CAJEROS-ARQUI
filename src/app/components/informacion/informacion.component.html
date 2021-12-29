@@ -1,0 +1,70 @@
+<p-toast position="top-right"></p-toast>
+<div class="col-12 screen-content">
+  <div class="row">
+    <div class="col">
+      <p style="text-align: right">Número de cedula:</p>
+    </div>
+    <div class="col-4">
+      <input
+        type="text"
+        class="form-control"
+        maxlength="10"
+        (input)="inputValidator($event)" 
+        name="cedula"
+        [(ngModel)]="identification"
+        (keydown.Enter)="getClient()"
+        (keydown.Tab)="getClient()"
+      />
+    </div>    
+    <div class="col-2">
+      <button class="btn btn-primary" (click)="getClient()">VERIFICAR</button>
+    </div>
+  </div>
+  <br />
+  <div class="row" style="color: #810000">
+    <h4>Informacion del Cliente</h4>
+  </div>
+  <div class="row">
+    <div class="col bold">
+      <p>Nombre</p>
+      <p>Apellido</p>
+      <p>Fecha de nacimiento</p>
+      <p>Correo</p>
+    </div>
+    <div class="col">
+      <p>{{ this.client.nombre1 + " " + this.client.nombre2 }}</p>
+      <p>
+        {{ this.client.apellidoPaterno + " " + this.client.apellidoMaterno }}
+      </p>
+      <p>{{ this.client.fechaNacimiento | date:'d MMM y' }}</p>
+      <p>{{ this.client.email }}</p>
+    </div>
+    <div class="col bold">
+      <p>Teléfono</p>
+      <p>Provincia</p>
+      <p>Dirección</p>
+      <p>Estado civil</p>
+    </div>
+    <div class="col">
+      <p>{{ this.client.telefono }}</p>
+      <p>{{ this.client.provincia }}</p>
+      <p>{{ this.client.direccion }}</p>
+      <p>{{ this.client.estadoCivil }}</p>
+    </div>
+  </div>
+  <hr />
+  <div class="row" style="color: #810000">
+    <h5>Cuentas</h5>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col" *ngFor="let account of accounts">
+      <h6>{{ account.cuentaTipo }}</h6>
+      <ul>
+        <li>{{account.cuentaId}}</li>
+      </ul>      
+      <br />
+    </div>
+  </div>
+  <br />
+</div>
